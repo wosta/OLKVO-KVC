@@ -15,6 +15,10 @@
 		85824C171CABA29A0073D41E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85824C151CABA29A0073D41E /* LaunchScreen.storyboard */; };
 		85824C221CABA29A0073D41E /* OLKVO_KVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C211CABA29A0073D41E /* OLKVO_KVCTests.m */; };
 		85824C2D1CABA29A0073D41E /* OLKVO_KVCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C2C1CABA29A0073D41E /* OLKVO_KVCUITests.m */; };
+		85824C3C1CABA2C00073D41E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C3B1CABA2C00073D41E /* RootViewController.m */; };
+		85824C3F1CABA2C70073D41E /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C3E1CABA2C70073D41E /* SubViewController.m */; };
+		85824C421CABA2D20073D41E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C411CABA2D20073D41E /* Person.m */; };
+		85824C451CABA2D90073D41E /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C441CABA2D90073D41E /* Cat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		85824C281CABA29A0073D41E /* OLKVO&KVCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OLKVO&KVCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85824C2C1CABA29A0073D41E /* OLKVO_KVCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLKVO_KVCUITests.m; sourceTree = "<group>"; };
 		85824C2E1CABA29A0073D41E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85824C3A1CABA2C00073D41E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		85824C3B1CABA2C00073D41E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		85824C3D1CABA2C70073D41E /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		85824C3E1CABA2C70073D41E /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		85824C401CABA2D20073D41E /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		85824C411CABA2D20073D41E /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		85824C431CABA2D90073D41E /* Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
+		85824C441CABA2D90073D41E /* Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +117,14 @@
 				85824C0B1CABA29A0073D41E /* AppDelegate.m */,
 				85824C0D1CABA29A0073D41E /* ViewController.h */,
 				85824C0E1CABA29A0073D41E /* ViewController.m */,
+				85824C3A1CABA2C00073D41E /* RootViewController.h */,
+				85824C3B1CABA2C00073D41E /* RootViewController.m */,
+				85824C3D1CABA2C70073D41E /* SubViewController.h */,
+				85824C3E1CABA2C70073D41E /* SubViewController.m */,
+				85824C401CABA2D20073D41E /* Person.h */,
+				85824C411CABA2D20073D41E /* Person.m */,
+				85824C431CABA2D90073D41E /* Cat.h */,
+				85824C441CABA2D90073D41E /* Cat.m */,
 				85824C101CABA29A0073D41E /* Main.storyboard */,
 				85824C131CABA29A0073D41E /* Assets.xcassets */,
 				85824C151CABA29A0073D41E /* LaunchScreen.storyboard */,
@@ -270,8 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85824C421CABA2D20073D41E /* Person.m in Sources */,
+				85824C3F1CABA2C70073D41E /* SubViewController.m in Sources */,
+				85824C451CABA2D90073D41E /* Cat.m in Sources */,
 				85824C0F1CABA29A0073D41E /* ViewController.m in Sources */,
 				85824C0C1CABA29A0073D41E /* AppDelegate.m in Sources */,
+				85824C3C1CABA2C00073D41E /* RootViewController.m in Sources */,
 				85824C091CABA29A0073D41E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

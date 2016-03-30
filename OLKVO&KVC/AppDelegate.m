@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  OLKVO&KVC
 //
-//  Created by 魏旺 on 16/3/30.
+//  Created by peter on 16/3/30.
 //  Copyright © 2016年 olive. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[RootViewController alloc] init]];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

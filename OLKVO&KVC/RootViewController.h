@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RootViewController.h
 //  OLKVO&KVC
 //
 //  Created by peter on 16/3/30.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface RootViewController : UIViewController
 
 @end
-
