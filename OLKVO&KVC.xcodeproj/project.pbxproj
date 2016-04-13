@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851666641CBE7BB500C6AE47 /* Shark.m in Sources */ = {isa = PBXBuildFile; fileRef = 851666631CBE7BB500C6AE47 /* Shark.m */; };
 		85824C091CABA29A0073D41E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C081CABA29A0073D41E /* main.m */; };
 		85824C0C1CABA29A0073D41E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C0B1CABA29A0073D41E /* AppDelegate.m */; };
 		85824C0F1CABA29A0073D41E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85824C0E1CABA29A0073D41E /* ViewController.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		851666621CBE7BB500C6AE47 /* Shark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shark.h; sourceTree = "<group>"; };
+		851666631CBE7BB500C6AE47 /* Shark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shark.m; sourceTree = "<group>"; };
 		85824C041CABA29A0073D41E /* OLKVO&KVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OLKVO&KVC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85824C081CABA29A0073D41E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85824C0A1CABA29A0073D41E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				85824C411CABA2D20073D41E /* Person.m */,
 				85824C431CABA2D90073D41E /* Cat.h */,
 				85824C441CABA2D90073D41E /* Cat.m */,
+				851666621CBE7BB500C6AE47 /* Shark.h */,
+				851666631CBE7BB500C6AE47 /* Shark.m */,
 				85824C101CABA29A0073D41E /* Main.storyboard */,
 				85824C131CABA29A0073D41E /* Assets.xcassets */,
 				85824C151CABA29A0073D41E /* LaunchScreen.storyboard */,
@@ -293,6 +298,7 @@
 				85824C421CABA2D20073D41E /* Person.m in Sources */,
 				85824C3F1CABA2C70073D41E /* SubViewController.m in Sources */,
 				85824C451CABA2D90073D41E /* Cat.m in Sources */,
+				851666641CBE7BB500C6AE47 /* Shark.m in Sources */,
 				85824C0F1CABA29A0073D41E /* ViewController.m in Sources */,
 				85824C0C1CABA29A0073D41E /* AppDelegate.m in Sources */,
 				85824C3C1CABA2C00073D41E /* RootViewController.m in Sources */,
@@ -522,6 +528,7 @@
 				85824C331CABA29B0073D41E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		85824C341CABA29B0073D41E /* Build configuration list for PBXNativeTarget "OLKVO&KVCTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +537,7 @@
 				85824C361CABA29B0073D41E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		85824C371CABA29B0073D41E /* Build configuration list for PBXNativeTarget "OLKVO&KVCUITests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +546,7 @@
 				85824C391CABA29B0073D41E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

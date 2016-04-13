@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "Person.h"
 #import "Cat.h"
+#import "Shark.h"
 #import "SubViewController.h"
 
 @interface RootViewController ()
@@ -24,10 +25,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // KVC
-    [self kvc];
+//    [self kvc];
     
     // KVO
-    [self kvo];
+//    [self kvo];
+    
+    [self shark];
     
  }
 
@@ -78,6 +81,16 @@
     nextButton.backgroundColor = [UIColor lightGrayColor];
     [nextButton addTarget:self action:@selector(nextButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
+}
+
+- (void)shark {
+    Shark *shark = [Shark new];
+    // breakpoint 1
+    [shark addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    // breakpoint 2
+    shark.name = @"萨萨萨";
+    [shark removeObserver:self forKeyPath:@"name"];
+    
 }
 
 - (void)buttonPressed {
