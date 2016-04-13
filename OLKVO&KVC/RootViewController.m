@@ -12,7 +12,8 @@
 #import "SubViewController.h"
 
 @interface RootViewController ()
-
+@property (nonatomic, strong) UILabel *kvoAgeLabel;
+@property (nonatomic, strong) Person *kvoPerson;
 @end
 
 @implementation RootViewController
@@ -22,7 +23,15 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    // KVC
+    // KVC
+    [self kvc];
+    
+    // KVO
+    [self kvo];
+    
+ }
+
+- (void)kvc {
     Person *person = [[Person alloc] init];
     [person setValue:@"Kitty" forKey:@"name"];
     [person setValue:@20 forKey:@"age"];
@@ -35,17 +44,58 @@
     [person setValue:@"2016年03月30日" forKeyPath:@"cat.birthday"];
     [person.cat printBirthday];
     NSLog(@"person.name = %@, person.age = %zd, person.cat.type = %@", person.name, person.age, person.cat.type);
-//
     
+    //
     NSDictionary *dic = @{@"name":@"peter",
                           @"age":@22,
                           @"cat":person.cat};
-//    @"cat":person.cat
+    //    @"cat":person.cat
     Person *person01 = [[Person alloc] initWithDictionary:dic];
     [person01.cat printBirthday];
     NSLog(@"person01.name = %@, person01.age = %zd", person01.name, person01.age);
+}
+
+- (void)kvo {
+    Person *person = [[Person alloc] init];
+    person.name = @"hello";
+    person.age = 23;
+    self.kvoPerson = person;
+    [person addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(120, 200, 100, 35)];
+    [btn setBackgroundColor:[UIColor lightGrayColor]];
+    [btn setTitle:@"增加5岁" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+
+    self.kvoAgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 150, 200, 35)];
+    self.kvoAgeLabel.text = [NSString stringWithFormat:@"%@现在的年龄是: %zd", person.name, person.age];
+    self.kvoAgeLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.kvoAgeLabel];
     
- }
+    UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(100, CGRectGetMaxY(btn.frame)+50, 50, 50)];
+    [nextButton setTitle:@"next" forState:UIControlStateNormal];
+    nextButton.backgroundColor = [UIColor lightGrayColor];
+    [nextButton addTarget:self action:@selector(nextButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButton];
+}
+
+- (void)buttonPressed {
+    self.kvoPerson.age += 5;
+}
+
+- (void)nextButton {
+    SubViewController *sub = [[SubViewController alloc] init];
+    [self.navigationController pushViewController:sub animated:YES];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    self.kvoAgeLabel.text = [NSString stringWithFormat:@"%@现在的年龄是: %zd", self.kvoPerson.name, self.kvoPerson.age];
+}
+
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"age" context:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
