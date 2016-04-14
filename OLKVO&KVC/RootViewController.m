@@ -28,19 +28,19 @@
 //    [self kvc];
     
     // KVO
-//    [self kvo];
+    [self kvo];
     
-    [self shark];
+//    [self shark];
     
  }
 
 - (void)kvc {
     Person *person = [[Person alloc] init];
-    [person setValue:@"Kitty" forKey:@"name"];
+    [person setValue:@"Kitty" forKey:@"name"]; // 给name属性赋值
     [person setValue:@20 forKey:@"age"];
     [person setValue:@1 forKey:@"sex"];
     [person setValue:@"2016年03月30日" forKeyPath:@"birthday"];
-    [person printSex];
+    [person printSex]; // 打印sex
     [person printBirthday];
     person.cat = [[Cat alloc] init];
     [person setValue:@"Tom" forKeyPath:@"cat.type"]; // forKeyPath 可以有高级作用，会先找cat的属性，然后再找type，如果没有type这个属性，赋值也不会报错。所以尽量使用forKeyPath这个方法来代替forKey
@@ -63,7 +63,8 @@
     person.name = @"hello";
     person.age = 23;
     self.kvoPerson = person;
-    [person addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+    [person addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:@"RootViewController"];
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(120, 200, 100, 35)];
     [btn setBackgroundColor:[UIColor lightGrayColor]];
@@ -86,7 +87,7 @@
 - (void)shark {
     Shark *shark = [Shark new];
     // breakpoint 1
-    [shark addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    [shark addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:@"RootViewController"];
     // breakpoint 2
     shark.name = @"萨萨萨";
     [shark removeObserver:self forKeyPath:@"name"];
@@ -107,7 +108,7 @@
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"age" context:nil];
+    [self removeObserver:self forKeyPath:@"age" context:@"RootViewController"];
 }
 
 - (void)didReceiveMemoryWarning {

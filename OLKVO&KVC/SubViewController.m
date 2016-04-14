@@ -28,7 +28,7 @@
     person.name = @"hello";
     person.age = 23;
     self.subPersonKVO = person;
-    [person addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+    [person addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:@"SubViewController"];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(120, 200, 100, 35)];
     [btn setBackgroundColor:[UIColor lightGrayColor]];
@@ -51,7 +51,7 @@
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"age" context:nil];
+    [self removeObserver:self forKeyPath:@"age" context:@"SubViewController"];
 }
 
 - (void)didReceiveMemoryWarning {
