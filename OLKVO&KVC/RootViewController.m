@@ -108,7 +108,7 @@
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"age" context:@"RootViewController"];
+    [self.kvoPerson removeObserver:self forKeyPath:@"age" context:@"RootViewController"];
 }
 
 - (void)didReceiveMemoryWarning {
