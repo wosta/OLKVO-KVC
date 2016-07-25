@@ -15,6 +15,7 @@
 @interface RootViewController ()
 @property (nonatomic, strong) UILabel *kvoAgeLabel;
 @property (nonatomic, strong) Person *kvoPerson;
+@property (nonatomic, strong) SubViewController *subView; // 绑定view太重了
 @end
 
 @implementation RootViewController
@@ -29,6 +30,8 @@
     
     // KVO
     [self kvo];
+    
+    [self addSubView];
     
 //    [self shark];
     
@@ -84,6 +87,12 @@
     [self.view addSubview:nextButton];
 }
 
+- (void)addSubView {
+    SubViewController *sub = [[SubViewController alloc] init];
+    [sub addObserver:self forKeyPath:@"subAge" options:NSKeyValueObservingOptionNew context:nil];
+    self.subView = sub;
+}
+
 - (void)shark {
     Shark *shark = [Shark new];
     // breakpoint 1
@@ -99,16 +108,23 @@
 }
 
 - (void)nextButton {
-    SubViewController *sub = [[SubViewController alloc] init];
-    [self.navigationController pushViewController:sub animated:YES];
+#warning 为何这里不行？
+//    SubViewController *sub = [[SubViewController alloc] init];
+//    [sub addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+//    self.subView = sub;
+    [self.navigationController pushViewController:self.subView animated:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"subAge"]) {
+        self.kvoAgeLabel.text = [NSString stringWithFormat:@"%@现在的年龄是: %zd", self.kvoPerson.name, self.subView.subAge];
+    }
     self.kvoAgeLabel.text = [NSString stringWithFormat:@"%@现在的年龄是: %zd", self.kvoPerson.name, self.kvoPerson.age];
 }
 
 - (void)dealloc {
     [self.kvoPerson removeObserver:self forKeyPath:@"age" context:@"RootViewController"];
+    [self.subView removeObserver:self forKeyPath:@"subAge"];
 }
 
 - (void)didReceiveMemoryWarning {

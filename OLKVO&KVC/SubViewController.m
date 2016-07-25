@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     [self subKVO];
+    [self backButton];
 }
 
 - (void)subKVO {
@@ -32,7 +33,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(120, 200, 100, 35)];
     [btn setBackgroundColor:[UIColor lightGrayColor]];
-    [btn setTitle:@"增加5岁" forState:UIControlStateNormal];
+    [btn setTitle:@"增加10岁" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
@@ -44,6 +45,19 @@
 
 - (void)buttonPressed {
     self.subPersonKVO.age += 10;
+}
+
+- (void)backButton {
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 220, 50, 44)];
+    backButton.backgroundColor = [UIColor grayColor];
+    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+}
+
+- (void)backButtonClick {
+    self.subAge = self.subPersonKVO.age;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {

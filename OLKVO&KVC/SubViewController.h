@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SubViewController : UIViewController
-
+@property (nonatomic, assign) NSUInteger subAge;
 @end
