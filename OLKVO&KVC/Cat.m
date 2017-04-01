@@ -18,4 +18,9 @@
 - (void)printBirthday{
     NSLog(@"cat.birthday是%@", _birthday);
 }
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"wow, how beautiful is %@, how old is it? %@", self.type, _birthday];
+}
+
 @end

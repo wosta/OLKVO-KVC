@@ -13,5 +13,5 @@
 @property (nonatomic, copy)NSString *type;
 
 - (void)printBirthday;
-
+- (NSString *)description;
 @end

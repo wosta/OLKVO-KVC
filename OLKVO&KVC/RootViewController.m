@@ -11,6 +11,24 @@
 #import "Cat.h"
 #import "Shark.h"
 #import "SubViewController.h"
+#import <objc/runtime.h>
+
+typedef enum : NSUInteger {
+    RootViewKVC,
+    RootViewKVO,
+} RootViewENUM;
+
+static NSDictionary *layer_style(RootViewENUM rootViewEnum) {
+    NSDictionary *dict = nil;
+    switch (RootViewKVC) {
+        case RootViewKVC:
+//            dict
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @interface RootViewController ()
 @property (nonatomic, strong) UILabel *kvoAgeLabel;
@@ -29,36 +47,61 @@
 //    [self kvc];
     
     // KVO
-    [self kvo];
-    
+//    [self kvo];
+    [self kvo01];
     [self addSubView];
     
 //    [self shark];
     
- }
+    
+    Class obj = [NSObject class];
+    Class cls = object_getClass(obj); // 这是返回的实例
+    Class cls2 = [obj class]; // 这是返回的类
+    NSLog(@"cls  %p", cls); // 0x107111e08
+    NSLog(@"cls2 %p", cls2);// 0x107111e58
+    
+    
+    
+}
 
 - (void)kvc {
     Person *person = [[Person alloc] init];
-    [person setValue:@"Kitty" forKey:@"name"]; // 给name属性赋值
-    [person setValue:@20 forKey:@"age"];
-    [person setValue:@1 forKey:@"sex"];
-    [person setValue:@"2016年03月30日" forKeyPath:@"birthday"];
-    [person printSex]; // 打印sex
-    [person printBirthday];
-    person.cat = [[Cat alloc] init];
-    [person setValue:@"Tom" forKeyPath:@"cat.type"]; // forKeyPath 可以有高级作用，会先找cat的属性，然后再找type，如果没有type这个属性，赋值也不会报错。所以尽量使用forKeyPath这个方法来代替forKey
-    [person setValue:@"2016年03月30日" forKeyPath:@"cat.birthday"];
-    [person.cat printBirthday];
-    NSLog(@"person.name = %@, person.age = %zd, person.cat.type = %@", person.name, person.age, person.cat.type);
+    person.name = @"peter";
+    person.age = 20;
+//    NSLog(@"%@", [person description]);
     
-    //
+    Person *person01 = [[Person alloc] init];
+    [person01 setValue:@"kitty" forKey:@"name"];
+    [person01 setValue:@20 forKeyPath:@"age"];
+//    [person01 setValue:@"2017年03月31日" forKeyPath:@"birthday"];
+    // setValue-forKey  && setValue-forKeyPath 在这里两者是没有区别的
+    [person01 setValue:@"2017年03月31日" forKey:@"_birthday"];
+    [person01 setValue:@"2017年03月31日" forKey:@"birthday"];
+    // 我们传入的字符串key是birthday,但是定义的属性是_birthday,但是通过kvc还是可以给_birthday属性赋到值。说明对某一个属性进行赋值,可以不用加下划线,而且它的查找规则应该是:先查找和直接写入的字符串相同的成员变量,如果找不到就找以下划线开头的成员变量。
+//    NSLog(@"person01 descript: %@", person01);
+    
+    Cat *aCat = [[Cat alloc] init];
+    person01.cat = aCat;
+//    [person01 setValue:@"bingo" forKey:@"cat.type"];
+    [person01 setValue:@"bingo" forKeyPath:@"cat.type"];
+//    [person01 setValue:@"bingo" forKeyPath:@"acat.type"];
+    // [<Person 0x608000254ca0> valueForUndefinedKey:]: this class is not key value coding-compliant for the key acat.'
+    // 如果这里没有找到对应的key的话也会crash掉
+    // setValue-forKey  && setValue-forKeyPath 在这里就有区别了，前者就会造成crash
+//    NSLog(@"the cat of person01 is %@", [person01.cat description]);
+    
+    NSLog(@"person01.name = %@, person01.age = %@, person01.cat.type=%@", [person01 valueForKeyPath:@"name"], [person01 valueForKeyPath:@"birthday"], [person01 valueForKeyPath:@"cat.type"]);
+    // 既然能通过kvc赋值，那么就可以通过kvc获值。
+    
+    
+    // kvc 另外一个用处是setValuesForKeysWithDictionary
     NSDictionary *dic = @{@"name":@"peter",
                           @"age":@22,
                           @"cat":person.cat};
     //    @"cat":person.cat
-    Person *person01 = [[Person alloc] initWithDictionary:dic];
+    Person *person02 = [[Person alloc] initWithDictionary:dic];
     [person01.cat printBirthday];
-    NSLog(@"person01.name = %@, person01.age = %zd", person01.name, person01.age);
+    NSLog(@"person01.name = %@, person01.age = %zd", person02.name, person02.age);
 }
 
 - (void)kvo {
@@ -85,6 +128,10 @@
     nextButton.backgroundColor = [UIColor lightGrayColor];
     [nextButton addTarget:self action:@selector(nextButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
+}
+
+- (void)kvo01 {
+    
 }
 
 - (void)addSubView {

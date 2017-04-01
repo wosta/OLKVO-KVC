@@ -24,4 +24,6 @@
 
 - (void)printBirthday ;
 
+- (NSString *)description;
+
 @end

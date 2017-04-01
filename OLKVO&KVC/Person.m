@@ -32,4 +32,8 @@
 - (void)printBirthday{
     NSLog(@"person.birthday是%@", _birthday);
 }
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"person.name = %@, person.age = %ld, person.birthday = %@", self.name, (long)self.age, _birthday];
+}
 @end
